@@ -16,6 +16,12 @@ export interface UploadOptions {
    * @default 32MB
    */
   uploadChunkSize?: number
+  /**
+   * If `true`, ignores cache upload errors (regardless of the reason)
+   *
+   * @default false
+   */
+  ignoreSaveErrors?: boolean
 }
 
 /**

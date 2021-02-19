@@ -258,9 +258,13 @@ async function uploadFile(
                   autoClose: false
                 })
                 .on('error', error => {
-                  throw new Error(
-                    `Cache upload failed because file read failed with ${error.message}`
-                  )
+                  if (options?.ignoreSaveErrors) {
+                    core.info(`Cache upload failed because file read failed with ${error.message}. Continuing as 'ignore-save-errors' is set to true.`)
+                  } else {
+                    throw new Error(
+                      `Cache upload failed because file read failed with ${error.message}`
+                    )
+                  }
                 }),
             start,
             end
